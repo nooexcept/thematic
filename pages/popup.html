@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="popup.css">
+</head>
+<body>
+    <header>
+        <img src="./../assets/logo.svg" alt="Thematic logo">
+        <span>Thematic</span>
+    </header>
+    <div class="container">
+        <div class="page-status" id="page-status">
+            <div class="status-text active" id="status-text"></div>
+            <div class="status-checkbox" id="status-checkbox">
+                <label class="checkbox-container">
+                    Enabled on this site
+                    <input type="checkbox" id="siteEnableCheckbox">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <div class="invert-checkbox" id="invert-checkbox">
+                <label class="checkbox-container">
+                    Invert colors
+                    <input type="checkbox" id="siteInvertCheckbox">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+        </div>
+        <button id="options-btn" type="button">Options</button>
+    </div>
+    <script src="../src/ui/popup.js"></script>
+</body>
+</html>

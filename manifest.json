@@ -1,0 +1,33 @@
+{
+
+  "manifest_version": 2,
+  "name": "Thematic",
+  "version": "1.0",
+
+  "description": "Thematic is a free, open source web style changer",
+
+  "icons": {
+    "48": "assets/logo.svg",
+    "96": "assets/logo.svg"
+  },
+
+  "permissions": [
+    "<all_urls>",
+    "webNavigation",
+    "activeTab",
+    "tabs",
+    "contextMenus",
+    "storage"
+  ],
+
+  "background": {
+    "scripts": [ "vendor/tinycolor.js", "src/background_scripts/transform.js", "src/background_scripts/thematic.js" ]
+  },
+
+  "browser_action": {
+    "default_icon": "./assets/logo.svg",
+    "default_title": "Thematic",
+    "default_popup": "./pages/popup.html"
+  }
+
+}

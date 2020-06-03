@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Thematic</title>
+    <meta charset="utf-8">
+    <script src="../vendor/jquery-3.5.1.min.js"></script>
+    <script src="../vendor/spectrum.js"></script>
+    <script type='text/javascript' src='../vendor/tinycolor.js'></script>
+    <link rel='stylesheet' href='../vendor/spectrum.css' />
+    <link rel="stylesheet" type="text/css" href="options.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="menu">
+            <header>
+                <img src="./../../assets/logo.svg" alt="Thematic logo">
+                <span>Thematic</span>
+            </header>
+            <ul>
+                <li>Change style</li>
+            </ul>
+        </div>
+        <div class="content">
+            <h2>Change style 🎨🤟</h2>
+            <div class="palette-type">
+                <label for="palette-type-select">Choose a palette type:</label>
+                <select class="basic-select" name="palette-type-select" id="palette-type-select">
+                    <option value="page">Page colors</option>
+                    <option value="text">Text colors</option>
+                </select>
+                <span class='palette-tip' id='palette-tip'></span>
+            </div>
+            <div id="color-list" class="color-list">
+            </div>
+            <div class='picker-wrapper'>
+                <div id='page-picker'></div>
+                <button type="button" class='btn-add'>Add color!</button>
+                <button type="button" class='btn-remove'>remove color</button>
+            </div>
+        </div>
+    </div>
+    <script src="../src/ui/options.js"></script>
+</body>
+</html>

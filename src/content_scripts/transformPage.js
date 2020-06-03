@@ -35,7 +35,6 @@
       /* Transform styleSheets into an array, map them into CSS Rules texts */
       const sheets = await Promise.all(
         [...document.styleSheets].map(async (s) => {
-          console.log(s.href);
           if (!s.href || s.href.startsWith(origin)) {
             try {
               return [...s.cssRules].reduce((a, v) => a + v.cssText, "");

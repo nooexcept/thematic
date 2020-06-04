@@ -1,0 +1,61 @@
+{
+  "extensionDescription": {
+    "message": "Thematic eh um alterador de estilo para a web gratuito",
+    "description": "Description of the extension"
+  },
+
+  "siteEnabledPopup": {
+    "message": "Habilitado nesse site",
+    "description": "Popup checkbox to enable or disable the extension in a specific website"
+  },
+
+  "invertColorsPopup": {
+    "message": "Inverter cores",
+    "description": "Popup checkbox to invert colors in a specific website"
+  },
+
+  "optionsBtnPopup": {
+    "message": "Opcoes",
+    "description": "Button that lead to the extension options from the popup"
+  },
+
+  "changeStyleOptions": {
+    "message": "Mudar estilo",
+    "description": "Change style text in the options page, for the title and sidebar"
+  },
+
+  "choosePaletteType": {
+    "message": "Escolha um tipo de paleta:",
+    "description": "Label for the select box that picks a palette to edit"
+  },
+
+  "pagePaletteType": {
+    "message": "Cores da pagina",
+    "description": "Text for the select option that will specify the palette for general page colors"
+  },
+
+  "pagePaletteHint": {
+    "message": "Escolha a paleta que sera utilizada para mudar todos os elementos da pagina, exceto o texto.",
+    "description": "Hint that shows when the page palette option is selected"
+  },
+
+  "textPaletteType": {
+    "message": "Cores do texto",
+    "description": "Text for the select option that will specify the palette for text page colors"
+  },
+
+  "textPaletteHint": {
+    "message": "Escolha a paleta que sera utilizada para mudar as cores do texto.",
+    "description": "Hint that shows when the text palette option is selected"
+  },
+
+  "removeColorBtn": {
+    "message": "remover cor",
+    "description": "Text for the button that removes a color from the selected palette"
+  },
+
+  "addColorBtn": {
+    "message": "Adicionar cor!",
+    "description": "Text for the button that adds a color to the selected palette"
+  }
+}

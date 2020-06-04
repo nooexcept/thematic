@@ -18,16 +18,16 @@
                 <span>Thematic</span>
             </header>
             <ul>
-                <li>Change style</li>
+                <li id="change-style-li">Change style</li>
             </ul>
         </div>
         <div class="content">
-            <h2>Change style 🎨🤟</h2>
+            <h2 id="change-style-txt">Change style 🎨🤟</h2>
             <div class="palette-type">
-                <label for="palette-type-select">Choose a palette type:</label>
+                <label id="palette-type-label" for="palette-type-select">Choose a palette type:</label>
                 <select class="basic-select" name="palette-type-select" id="palette-type-select">
-                    <option value="page">Page colors</option>
-                    <option value="text">Text colors</option>
+                    <option value="page" id="page-opt">Page colors</option>
+                    <option value="text" id="txt-opt">Text colors</option>
                 </select>
                 <span class='palette-tip' id='palette-tip'></span>
             </div>
@@ -35,8 +35,8 @@
             </div>
             <div class='picker-wrapper'>
                 <div id='page-picker'></div>
-                <button type="button" class='btn-add'>Add color!</button>
-                <button type="button" class='btn-remove'>remove color</button>
+                <button type="button" id="add-color-btn" class='btn-add'>Add color!</button>
+                <button type="button" id="remove-color-btn" class='btn-remove'>remove color</button>
             </div>
         </div>
     </div>

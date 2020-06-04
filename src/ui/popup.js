@@ -4,6 +4,10 @@ const statusTextEl = document.getElementById("status-text");
 const siteEnabledCheckboxEl = document.getElementById("siteEnableCheckbox");
 const siteInvertedCheckboxEl = document.getElementById("siteInvertCheckbox");
 
+document.getElementById("options-btn").textContent = browser.i18n.getMessage("optionsBtnPopup");
+document.getElementById("enabled-span").textContent = browser.i18n.getMessage("siteEnabledPopup");
+document.getElementById("invert-span").textContent = browser.i18n.getMessage("invertColorsPopup");
+
 browser.tabs.query({ active: true, currentWindow: true }).then((tabs) => {
   /* Use the active tab url from the array */
   const activeTabURL = tabs[0].url;

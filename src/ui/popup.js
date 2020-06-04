@@ -1,22 +1,8 @@
+/*global getDomain*/
+
 const statusTextEl = document.getElementById("status-text");
 const siteEnabledCheckboxEl = document.getElementById("siteEnableCheckbox");
 const siteInvertedCheckboxEl = document.getElementById("siteInvertCheckbox");
-
-const getDomain = (url) => {
-  let formattedURL = url;
-
-  let idx;
-  if ((idx = formattedURL.indexOf("www.")) !== -1) {
-    formattedURL = formattedURL.substring(idx + 4);
-  } else if ((idx = formattedURL.indexOf("//")) !== -1) {
-    formattedURL = formattedURL.substring(idx + 2);
-  }
-
-  if ((idx = formattedURL.indexOf("/")) !== -1)
-    formattedURL = formattedURL.substring(0, idx);
-
-  return formattedURL;
-};
 
 browser.tabs.query({ active: true, currentWindow: true }).then((tabs) => {
   /* Use the active tab url from the array */

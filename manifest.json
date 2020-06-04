@@ -21,7 +21,7 @@
   ],
 
   "background": {
-    "scripts": [ "vendor/tinycolor.js", "src/background_scripts/transform.js", "src/background_scripts/thematic.js" ]
+    "scripts": [ "src/util.js", "vendor/tinycolor.js", "src/background_scripts/transform.js", "src/background_scripts/thematic.js" ]
   },
 
   "browser_action": {

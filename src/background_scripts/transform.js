@@ -34,7 +34,7 @@ const hexToValues = (hex) => {
   return 0;
 };
 
-const transformElement = (value, prop, mapFunction) => {
+const transformElement = (value, prop, mapFunction, isImportant = false) => {
   if (!value || value.indexOf("rgb") === -1) return "";
   if (value === "transparent") return value;
 
@@ -74,7 +74,7 @@ const transformElement = (value, prop, mapFunction) => {
   );
 
   if (!transformedStyle) return "";
-  return `${prop}: ${transformedStyle} !important;`;
+  return `${prop}: ${transformedStyle} ${isImportant ? "!important" : ""};`;
 };
 
 const camelCase = (propName) =>
@@ -115,17 +115,25 @@ const parseCSSVar = (style, variables) => {
   }
 };
 
-const getTransformedTextColor = (rule, prop, mapTextColor, variables) => {
+const getTransformedTextColor = (
+  rule,
+  prop,
+  mapTextColor,
+  variables,
+  isImportant = false
+) => {
   const style = rule.style[prop];
 
   /* If it is a variable, parse and recalculate the value for the text */
   if (style.indexOf("var") !== -1) {
     const parsedStyle = parseCSSVar(style, variables);
-    return transformElement(parsedStyle, prop, mapTextColor);
+    return transformElement(parsedStyle, prop, mapTextColor, isImportant);
   } else {
-    return transformElement(style, prop, mapTextColor);
+    return transformElement(style, prop, mapTextColor, isImportant);
   }
 };
+
+const isImportant = (rule, prop) => !!rule.style.getPropertyPriority(prop);
 
 const getTransformedRule = (rule, mapColor, mapTextColor, variables) => {
   /* Do not do anything in the case of a undefined selectorText, this happens with CSSKeyframeRule */
@@ -155,10 +163,20 @@ const getTransformedRule = (rule, mapColor, mapTextColor, variables) => {
       if (tinyColor.isValid()) {
         const rgbaValue = tinyColor.toRgbString();
         variables[styleProp] = rgbaValue;
-        elements += transformElement(rgbaValue, styleProp, mapColor);
+        elements += transformElement(
+          rgbaValue,
+          styleProp,
+          mapColor,
+          isImportant(rule, styleProp)
+        );
       } else {
         variables[styleProp] = styleValue;
-        elements += transformElement(styleValue, styleProp, mapColor);
+        elements += transformElement(
+          styleValue,
+          styleProp,
+          mapColor,
+          isImportant(rule, styleProp)
+        );
       }
     }
   }
@@ -167,15 +185,28 @@ const getTransformedRule = (rule, mapColor, mapTextColor, variables) => {
   for (let i = 0; i < pageColorProps.length; i += 1) {
     const prop = pageColorProps[i];
 
-    if (rule.style[camelCase(prop)])
-      elements += transformElement(rule.style[camelCase(prop)], prop, mapColor);
+    const ruleValue = rule.style[camelCase(prop)];
+    if (ruleValue)
+      elements += transformElement(
+        ruleValue,
+        prop,
+        mapColor,
+        isImportant(rule, prop)
+      );
   }
 
   for (let i = 0; i < textColorProps.length; i += 1) {
     const prop = textColorProps[i];
 
-    if (rule.style[camelCase(prop)])
-      elements += getTransformedTextColor(rule, prop, mapTextColor, variables);
+    const ruleValue = rule.style[camelCase(prop)];
+    if (ruleValue)
+      elements += getTransformedTextColor(
+        rule,
+        prop,
+        mapTextColor,
+        variables,
+        isImportant(rule, prop)
+      );
   }
 
   if (!elements) return "";

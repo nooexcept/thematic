@@ -19,13 +19,27 @@ const textPaletteTip = browser.i18n.getMessage("textPaletteHint");
 paletteTip.textContent = pagePaletteTip;
 
 /* Apply i18n text content */
-document.getElementById("palette-type-label").textContent = browser.i18n.getMessage("choosePaletteType");
-document.getElementById("page-opt").textContent = browser.i18n.getMessage("pagePaletteType");
-document.getElementById("txt-opt").textContent = browser.i18n.getMessage("textPaletteType");
-document.getElementById("change-style-txt").textContent = `${browser.i18n.getMessage("changeStyleOptions")} 🎨🤟`;
-document.getElementById("add-color-btn").textContent = browser.i18n.getMessage("addColorBtn");
-document.getElementById("remove-color-btn").textContent = browser.i18n.getMessage("removeColorBtn");
-document.getElementById("change-style-li").textContent = browser.i18n.getMessage("changeStyleOptions");
+document.getElementById(
+  "palette-type-label"
+).textContent = browser.i18n.getMessage("choosePaletteType");
+document.getElementById("page-opt").textContent = browser.i18n.getMessage(
+  "pagePaletteType"
+);
+document.getElementById("txt-opt").textContent = browser.i18n.getMessage(
+  "textPaletteType"
+);
+document.getElementById(
+  "change-style-txt"
+).textContent = `${browser.i18n.getMessage("changeStyleOptions")} 🎨🤟`;
+document.getElementById("add-color-btn").textContent = browser.i18n.getMessage(
+  "addColorBtn"
+);
+document.getElementById(
+  "remove-color-btn"
+).textContent = browser.i18n.getMessage("removeColorBtn");
+document.getElementById(
+  "change-style-li"
+).textContent = browser.i18n.getMessage("changeStyleOptions");
 
 const colorListEl = $("#color-list");
 

@@ -9,12 +9,18 @@ var inverted = [];
 var isBlacklisted = (url) => blacklist.some((e) => url.indexOf(e) !== -1);
 var isInverted = (url) => inverted.some((e) => url.indexOf(e) !== -1);
 
+const getBasePageBG = (url) =>
+  !isInverted(url) ? pagePalette[pagePalette.length - 1] : pagePalette[0];
+const getBaseTextColor = (url) =>
+  isInverted(url) ? textPalette[textPalette.length - 1] : textPalette[0];
+
 const getDisplayCover = (url) => {
-  const basePageColor = !isInverted(url)
-    ? pagePalette[pagePalette.length - 1]
-    : pagePalette[0];
+  const basePageColor = getBasePageBG(url);
   return `:root{background:${basePageColor} !important}html{background:${basePageColor} !important}body,body *{visibility:hidden !important}`;
 };
+
+const fallbackStyle = (url) =>
+  `body{background-color:${getBasePageBG(url)};color:${getBaseTextColor(url)}}`;
 
 const transformPage = (() => {
   let cache = {};
@@ -53,7 +59,7 @@ const transformPage = (() => {
 
 const hideIframesCSS = "iframe{visibility: hidden}";
 
-const onDOMCommitted = ({ tabId, url, frameId }) => {
+const onDOMCommitted = async ({ tabId, url, frameId }) => {
   if (isBlacklisted(url)) return;
   if (pagePalette.length === 0 || textPalette.length === 0) return;
 
@@ -64,6 +70,13 @@ const onDOMCommitted = ({ tabId, url, frameId }) => {
   if (frameId !== 0) return;
 
   const domain = getDomain(url);
+
+  await browser.tabs.insertCSS(tabId, {
+    code: fallbackStyle(url),
+    runAt: "document_start",
+    frameId: frameId,
+    cssOrigin: "author",
+  });
 
   /* If it is cached, the transformation will just apply the CSS as soon as possible */
   if (transformPage.isCached(domain, frameId)) {
